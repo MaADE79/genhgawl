@@ -1,15 +1,22 @@
 #!/usr/bin/python
-#############################################################################
-# Generator for homographic attack wordlists                                #
-#                                                                           #
-# Needs substutition rule as cslst-File                                     #
-#                                                                           #
-#                                                                           #
-# (c) by Mathias Aust, M.Sc.                                                #
-#     contact: MaA_DE79@gmx.com                                             #
-#                                                                           #
-#                                                                           #
-#############################################################################
+#########################################################################################################
+# Generator for homographic attack wordlists                                                            #
+#                                                                                                       #
+# Needs substutition rule as cslst-File                                                                 #
+#                                                                                                       #
+# Usage:                                                                                                #
+#    genhgawl.py [options]                                                                              #
+#                                                                                                       #
+#        Options:                                                                                       #
+#            -w <single word> or -f <file with words>                                                   #
+#            -o <outputfile>                                                                            #
+#            -cslst <substitutions to use>                                                              # 
+#                                                                                                       #
+# (c) by Mathias Aust, M.Sc.                                                                            #
+#     contact: MaA_DE79@gmx.com                                                                         #
+#                                                                                                       #
+#                                                                                                       #
+#########################################################################################################
 
 from math import pow
 import sys
@@ -119,9 +126,11 @@ def main():
     if inFileName:
         words = readFile(inFileName)    
     else:
-        words = getARGVValueByTag("-w")
-        
-    generateHGAwordlist(words, cslst, outFileName)
+        words = []
+        words.append("".join(getARGVValueByTag("-w")))
+    
+    if words[0]:
+        generateHGAwordlist(words, cslst, outFileName)
 
 if __name__ == '__main__':  
    main()
